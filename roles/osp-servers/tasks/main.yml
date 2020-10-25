@@ -3,7 +3,7 @@
     os_server:
       cloud:            "openstack"
       name:             "{{ item.value.name }}"
-      state:            "{{ openstack_server_state            | item.value.state | default('present') }}"
+      state:            "{{ item.value.state                  | default('present') }}"
       image:            "{{ item.value.image                  | default('rhel-guest') }}"
       flavor:           "{{ item.value.flavor                 | default('m1.medium') }}"
       key_name:         "{{ item.value.key_name               | default('ansible_ssh_key') }}"
@@ -22,7 +22,7 @@
   
   - name: Debug instances 
     debug:
-      msg: "Server is {{ __instance.__openstack_server.instance_name }}"
+      msg: "Server is {{ __instance.__server.instance_name }}"
       verbosity: 2
     loop: "{{ r_instances.results }}"
     loop_control:
@@ -36,7 +36,7 @@
           cloud: openstack
           state: "{{ openstack_server_state | default('present') }}"
           reuse: yes
-          server: "{{ __instance.__openstack_server.instance_name }}"
+          server: "{{ __instance.__server.instance_name }}"
           network: ext_network
           wait: true
           timeout: 180
