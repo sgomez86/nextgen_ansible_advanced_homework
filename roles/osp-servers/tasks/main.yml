@@ -1,5 +1,5 @@
 ---
-    - name: Create server instances
+  - name: Create server instances
     os_server:
       cloud:            "openstack"
       name:             "{{ item.value.network_name }}"
