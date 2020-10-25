@@ -34,7 +34,7 @@
       cloud: openstack
       state: "{{ openstack_server_state | default('present') }}"
       reuse: yes
-      server: "{{ __instance.server.instance_name }}"
+      server: "{{ __instance.server.name }}"
       network: ext_network
       wait: true
       timeout: 180
@@ -42,7 +42,7 @@
     loop_control:
       loop_var: __instance
     register: r_floating_ips
-    
+
   - name: Wait for servers by name to be available
     wait_for:
       host: "{{ __fip.floating_ip.floating_ip_address }}"
