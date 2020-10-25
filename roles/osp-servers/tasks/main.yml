@@ -2,7 +2,7 @@
   - name: Create server instances
     os_server:
       cloud:            "openstack"
-      name:             "{{ item.value.network_name }}"
+      name:             "{{ item.value.name }}"
       state:            "{{ item.value.state                          | default('present') }}"
       image:            "{{ item.value.image                          | default('rhel-guest') }}"
       flavor:           "{{ item.value.flavor                         | default('m1.medium') }}"
