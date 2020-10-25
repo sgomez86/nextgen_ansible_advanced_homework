@@ -3,9 +3,9 @@
     os_server:
       cloud:            "openstack"
       name:             "{{ item.value.name }}"
-      state:            "{{ item.value.state                          | default('present') }}"
-      image:            "{{ item.value.image                          | default('rhel-guest') }}"
-      flavor:           "{{ item.value.flavor                         | default('m1.medium') }}"
+      state:            "{{ openstack_server_state            | item.value.state | default('present') }}"
+      image:            "{{ item.value.image                  | default('rhel-guest') }}"
+      flavor:           "{{ item.value.flavor                 | default('m1.medium') }}"
       key_name:         "{{ item.value.key_name               | default('ansible_ssh_key') }}"
       wait:             "{{ item.value.wait                   | default('yes') }}"
       security_groups:  "{{ item.value.security_group }}"
