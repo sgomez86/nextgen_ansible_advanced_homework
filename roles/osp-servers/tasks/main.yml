@@ -63,4 +63,3 @@
           loop_var: __fip
         delegate_to: "{{ inventory_hostname }}"
   
-  ...
