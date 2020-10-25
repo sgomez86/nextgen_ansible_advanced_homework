@@ -22,7 +22,7 @@
   
   - name: Debug instances 
     debug:
-      msg: "Server is {{ __instance.__server.instance_name }}"
+      msg: "Server is {{ __instance.server.instance_name }}"
       verbosity: 2
     loop: "{{ r_instances.results }}"
     loop_control:
