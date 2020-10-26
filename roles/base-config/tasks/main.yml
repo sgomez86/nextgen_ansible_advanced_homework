@@ -9,6 +9,11 @@
     backup: yes
 
 - name: enable repos
+  template:
+    src: repos_template.j2
+    dest: "/etc/yum.repos.d/internal.conf"
  
 - name: install base tools and packages
-
+  yum:
+    name: '*'
+    state: latest

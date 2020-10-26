@@ -1,2 +1,16 @@
 ---
+- name: Install tomcat
+  yum:
+    name: "{{ payload }}"
+    state: present
 
+- name: Enable tomcat start at boot
+  systemd:
+    name: tomcat
+    enabled: yes
+
+- name: Copy html into tomcat app
+  template:
+    src: index.html.je
+    dest: "{{tomcat_web_root}}"
+  notify: start {{ payload }}
