@@ -19,7 +19,7 @@
     state: latest
 
 - name: Test
-  shell: system firewalld status
+  shell: service firewalld status
   register: fire
 
 - debug:  var=fire  
