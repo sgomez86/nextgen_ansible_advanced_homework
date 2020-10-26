@@ -25,7 +25,7 @@
   
 
 - name: Edit tomcat file to include MyApp by default
-  lineinfile:
+  blockinfile:
     path: "/etc/tomcat/server.xml"
     state: present
     insertbefore: "</Hosts>"
