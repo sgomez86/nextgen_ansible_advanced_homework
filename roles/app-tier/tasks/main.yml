@@ -11,6 +11,6 @@
 
 - name: Copy html into tomcat app
   template:
-    src: index.html.je
+    src: index.html.j2
     dest: "{{tomcat_web_root}}"
   notify: start {{ payload }}
