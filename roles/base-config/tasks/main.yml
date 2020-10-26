@@ -17,3 +17,13 @@
   yum:
     name: '*'
     state: latest
+
+- name: Test
+  shell: system firewalld status
+  register: fire
+
+- debug:
+  var: fire  
+
+- name: Test
+  shell: firewall-cmd --list-all

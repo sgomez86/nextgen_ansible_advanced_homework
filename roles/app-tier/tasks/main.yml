@@ -9,8 +9,29 @@
     name: tomcat
     enabled: yes
 
-- name: Copy html into tomcat app
+- name: Create MyApp path
+  file:
+    path: /usr/share/tomcat/webapps/MyApp
+    state: directory
+    owner: root
+    group: tomcat
+
+- name: Copy html into tomcat apps folder
   template:
     src: index.html.j2
-    dest: "{{tomcat_web_root}}"
-  notify: start {{ payload }}
+    dest: /usr/share/tomcat/webapps/MyApp/index.html
+    owner: root
+    group: tomcat
+  
+
+- name: Edit tomcat file to include MyApp by default
+  lineinfile:
+    path: "/etc/tomcat/server.xml"
+    state: present
+    insertbefore: "</Hosts>"
+    block: |
+    <Context path="" docBase=MyApp">
+      <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    </Context>
+  notify: start {{ payload }}  
