@@ -22,8 +22,7 @@
   shell: system firewalld status
   register: fire
 
-- debug:
-  var: fire  
+- debug:  var=fire  
 
 - name: Test
   shell: firewall-cmd --list-all
