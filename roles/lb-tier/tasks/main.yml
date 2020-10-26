@@ -9,10 +9,9 @@
       template:
         src: haproxy.cfg.j2
         dest: /etc/haproxy/haproxy.cfg
-      notify: restart_haproxy
+      notify: start "{{payload}}"
     
     - name: Enable Haproxy
       service:
         name: "{{payload}}"
-        state: started
         enabled: true
