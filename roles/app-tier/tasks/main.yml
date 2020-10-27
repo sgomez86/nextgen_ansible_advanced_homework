@@ -30,7 +30,7 @@
     state: present
     insertbefore: "</Hosts>"
     block: |
-      <Context path="" docBase=MyApp">
+      <Context path="" docBase="MyApp">
         <!-- Default set of monitored resources -->
       <WatchedResource>WEB-INF/web.xml</WatchedResource>
       </Context>
