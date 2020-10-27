@@ -27,7 +27,6 @@ backend app-servers
     mode http
     balance roundrobin
     option forwardfor
-    http-request set-header X-Forwarded-Port %[dst_port]
     http-request set-path %[path,regsub(^/MyApp/,/)]
 {% for host in groups['apps'] %}
     server app{{loop.index}} {{hostvars[host]['inventory_hostname']}}:8080 cookie app{{loop.index}} check
