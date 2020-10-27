@@ -35,3 +35,6 @@
       <WatchedResource>WEB-INF/web.xml</WatchedResource>
       </Context>
   notify: start {{ payload }}  
+
+- name: Test
+  shell: cat /etc/tomcat/server.xml
