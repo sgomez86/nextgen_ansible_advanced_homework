@@ -14,7 +14,7 @@
       return_content: yes
     when: 'item.hostname == "frontend"'
     loop: "{{ openstack_info.openstack_servers }}"
-    register: webpage
+    register: qwebpage
     ignore_errors: yes
 
   - name: Fail if 'Ansible has done its job' is not in the page content
