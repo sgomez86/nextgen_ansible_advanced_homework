@@ -7,6 +7,12 @@
       server: 'frontend'
     register: openstack_info
 
+  - name: OpenStack servers
+    os_server_info:
+      cloud: openstack
+      server: 'app1'
+    register: openstack_info2  
+
   - name: Check if all osp instance exist
     debug: "{{ openstack_info.openstack_servers | length }}"
     register: osp_instance
@@ -29,7 +35,7 @@
       status_code: 200
       return_content: yes
     when: 'item.hostname == "app1"'
-    loop: "{{ openstack_info.openstack_servers }}"
+    loop: "{{ openstack_info2.openstack_servers }}"
     register: qa_webpage
     ignore_errors: yes  
 
