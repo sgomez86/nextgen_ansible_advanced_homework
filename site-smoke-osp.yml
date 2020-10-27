@@ -29,7 +29,7 @@
     register: qa_webpage
     ignore_errors: yes
 
-  - name: Curl website
+  - name: Curl website app1 8080
     uri:
       url: "http://{{ item.public_v4 }}:8080"
       status_code: 200
@@ -38,6 +38,26 @@
     loop: "{{ openstack_info2.openstack_servers }}"
     register: qa_webpage
     ignore_errors: yes  
+
+  - name: Curl website app1
+    uri:
+      url: "http://{{ item.public_v4 }}"
+      status_code: 200
+      return_content: yes
+    when: 'item.hostname == "app1"'
+    loop: "{{ openstack_info2.openstack_servers }}"
+    register: qa_webpage
+    ignore_errors: yes
+
+  - name: Curl website app1 8080/Myapp
+    uri:
+      url: "http://{{ item.public_v4 }}:8080/MyApp"
+      status_code: 200
+      return_content: yes
+    when: 'item.hostname == "app1"'
+    loop: "{{ openstack_info2.openstack_servers }}"
+    register: qa_webpage
+    ignore_errors: yes
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
