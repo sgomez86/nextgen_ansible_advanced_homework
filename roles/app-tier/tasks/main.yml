@@ -9,7 +9,7 @@
     name: tomcat
     enabled: yes
 
-- name: Create MyApp path
+- name: Create MyApp folder
   file:
     path: /usr/share/tomcat/webapps/MyApp
     state: directory
@@ -24,13 +24,10 @@
     group: tomcat
     mode: 0644
   
-- name: Copy html into tomcat apps folder
+- name: Copy server.xml
   template:
     src: server.xml.j2
     dest: /etc/tomcat/server.xml
     owner: root
     group: tomcat
   notify: start {{ payload }}  
-
-- name: Test
-  shell: cat /etc/tomcat/server.xml
