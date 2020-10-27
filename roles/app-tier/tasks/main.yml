@@ -23,17 +23,12 @@
     owner: root
     group: tomcat
   
-
-- name: Edit tomcat file to include MyApp by default
-  blockinfile:
-    path: "/etc/tomcat/server.xml"
-    state: present
-    insertbefore: "*</Host>"
-    block: |
-      <Context path="" docBase="MyApp">
-        <!-- Default set of monitored resources -->
-      <WatchedResource>WEB-INF/web.xml</WatchedResource>
-      </Context>
+- name: Copy html into tomcat apps folder
+  template:
+    src: server.xml.j2
+    dest: /etc/tomcat/server.xml
+    owner: root
+    group: tomcat
   notify: start {{ payload }}  
 
 - name: Test
