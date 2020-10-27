@@ -20,6 +20,7 @@ frontend hafrontend
     bind *:80
     mode http
     default_backend app-servers
+    reqadd X-Forwarded-Proto:\ http
     acl app-servers_url url_beg /MyApp
     use_backend app-servers if app-servers_url
 
