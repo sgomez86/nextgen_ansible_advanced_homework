@@ -20,8 +20,8 @@ frontend hafrontend
     bind *:80
     mode http
     default_backend app-servers
-    acl path-page-designer      path_beg -i /MyApp
-    use_backend path-page-designer if path-page-designer
+#    acl path-page-designer      path_beg -i /MyApp
+#    use_backend path-page-designer if path-page-designer
 
 backend app-servers
     mode http
