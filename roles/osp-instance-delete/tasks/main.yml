@@ -11,4 +11,4 @@
       cloud: "openstack" 
       name: "{{ item.hostname }}"
       state: "absent"
-    with_dict: "{{ servers_info.openstack_servers }}"
+    loop: "{{ servers_info.openstack_servers }}"
