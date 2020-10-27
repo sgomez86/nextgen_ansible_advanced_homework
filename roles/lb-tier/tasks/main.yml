@@ -10,9 +10,6 @@
         src: haproxy.cfg.j2
         dest: /etc/haproxy/haproxy.cfg
       notify: start "{{payload}}"
-
-    - name: Test
-      shell: cat /etc/haproxy/haproxy.cfg
     
     - name: Enable Haproxy
       service:
