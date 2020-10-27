@@ -23,6 +23,16 @@
     register: qa_webpage
     ignore_errors: yes
 
+  - name: Curl website
+    uri:
+      url: "http://{{ item.public_v4 }}:8080/MyApp"
+      status_code: 200
+      return_content: yes
+    when: 'item.hostname == "app1"'
+    loop: "{{ openstack_info.openstack_servers }}"
+    register: qa_webpage
+    ignore_errors: yes  
+
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
     when: "'Ansible has done its job' not in webpage.results[0].content"
