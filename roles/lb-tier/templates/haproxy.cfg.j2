@@ -20,12 +20,15 @@ frontend hafrontend
     bind *:80
     mode http
     default_backend app-servers
-
+    acl path-page-designer      path_beg -i /MyApp
+    use_backend path-page-designer if path-page-designer
 
 backend app-servers
     mode http
     balance roundrobin
     option forwardfor
+    http-request set-header X-Forwarded-Port %[dst_port]
+    option httpcheck HEAD / HTTP/1.1\r\nHost:localhost
 {% for host in groups['apps'] %}
     server app{{loop.index}} {{hostvars[host]['inventory_hostname']}}:8080 cookie app{{loop.index}} check
 {% endfor %}
