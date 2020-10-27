@@ -20,15 +20,15 @@ frontend hafrontend
     bind *:80
     mode http
     default_backend app-servers
-    reqadd X-Forwarded-Proto:\ http
-    acl app-servers_url url_beg /MyApp
-    use_backend app-servers if app-servers_url
+#    reqadd X-Forwarded-Proto:\ http
+#    acl app-servers_url url_beg /MyApp
+#    use_backend app-servers if app-servers_url
 
 backend app-servers
     mode http
     balance roundrobin
     option forwardfor
-    http-request set-path %[path,regsub(^/MyApp/,/)]
+#    http-request set-path %[path,regsub(^/MyApp/,/)]
 {% for host in groups['apps'] %}
     server app{{loop.index}} {{hostvars[host]['inventory_hostname']}}:8080 cookie app{{loop.index}} check
 {% endfor %}
