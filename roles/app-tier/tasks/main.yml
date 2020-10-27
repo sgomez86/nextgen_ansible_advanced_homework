@@ -28,7 +28,7 @@
   blockinfile:
     path: "/etc/tomcat/server.xml"
     state: present
-    insertbefore: "</Host>"
+    insertbefore: "*</Host>"
     block: |
       <Context path="" docBase="MyApp">
         <!-- Default set of monitored resources -->
