@@ -20,7 +20,7 @@
     with_dict: "{{ osp_servers }}"
     register: r_instances
   
-  - name: Debug instances 
+  - name: Print instances created 
     debug:
       msg: "Server is {{ __instance.server.instance_name }}"
       verbosity: 2
@@ -28,7 +28,6 @@
     loop_control:
       loop_var: __instance
   
-
   - name: Add floating IP to instances
     os_floating_ip:
       cloud: openstack
@@ -43,7 +42,7 @@
       loop_var: __instance
     register: r_floating_ips
 
-  - name: Wait for servers by name to be available
+  - name: Wait for servers to be available
     wait_for:
       host: "{{ __fip.floating_ip.floating_ip_address }}"
       port: 22

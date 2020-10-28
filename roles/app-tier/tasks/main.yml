@@ -16,7 +16,7 @@
     owner: root
     group: tomcat
 
-- name: Copy html into tomcat apps folder
+- name: Copy html file into tomcat apps folder
   template:
     src: index.html.j2
     dest: /usr/share/tomcat/webapps/MyApp/index.html
@@ -24,7 +24,7 @@
     group: tomcat
     mode: 0644
   
-- name: Copy server.xml
+- name: Copy server.xml to avoid typing /MyApp on url
   template:
     src: server.xml.j2
     dest: /etc/tomcat/server.xml
