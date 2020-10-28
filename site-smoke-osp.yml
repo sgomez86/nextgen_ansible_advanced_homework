@@ -1,13 +1,13 @@
 - hosts: workstation
   gather_facts: false
   tasks:
-  - name: OpenStack servers
+  - name: Gahter OpenStack servers info
     os_server_info:
       cloud: openstack
       server: 'frontend'
     register: openstack_info
 
-  - name: Curl website
+  - name: Curl website from frontend
     uri:
       url: "http://{{ item.public_v4 }}"
       status_code: 200
