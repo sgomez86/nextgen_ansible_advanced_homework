@@ -2,27 +2,22 @@
   gather_facts: true
   become: true
   tasks:
-#  - name: Install required packages 
-#    yum: 
-#     name: "{{item}}"
-#     state: latest 
-#    loop: 
-#      - python 
-#      - python-pip 
-#      - python-devel 
-#      - gcc
-#  - name: Install tower-cli
-#    pip:
-#     name: ansible-tower-cli
-#     state: latest
+  - name: Install required packages 
+    yum: 
+     name: "{{item}}"
+     state: latest 
+    loop: 
+      - python 
+      - python-pip 
+      - python-devel 
+      - gcc
+  - name: Install tower-cli
+    pip:
+     name: ansible-tower-cli
+     state: latest
   - name: List key files
     shell: (cd /root/.ssh; find . -maxdepth 1 -type f -iname '*key.pem')| cut -d'/' -f2
     register: file_to_copy
-  - name: Cat pem file
-    shell: printenv
-  - name: "print vars"
-    debug:
-      var: hostvars[inventory_hostname]
   - name: Tower Creds key file
     tower_credential:
       name: Creds for AWS instances
