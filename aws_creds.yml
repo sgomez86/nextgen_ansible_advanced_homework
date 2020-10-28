@@ -24,9 +24,9 @@
       organization: Default
       state: present
       kind: ssh
-      tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: admin
       tower_password: r3dh4t1!
+      tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_verify_ssl: no
       ssh_key_data: "/root/.ssh/{{ file_to_copy.stdout }}"
       username: ec2-user
