@@ -11,7 +11,7 @@ N/A
 Role Variables
 --------------
 
-N/A
+  - Vault encrypted variable own_repo_path
 
 
 Dependencies
