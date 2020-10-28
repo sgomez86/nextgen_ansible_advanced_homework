@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This role will create the openstack instaces
+This role will perform changes to sudo config required by Ansible, enable the required respositories and apply pending updates
 
 Requirements
 ------------
@@ -11,7 +11,8 @@ N/A
 Role Variables
 --------------
 
-osp_servers: list of servers to be deployed
+N/A
+
 
 Dependencies
 ------------
@@ -25,7 +26,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - osp-servers
+         - base-config
 
 License
 -------

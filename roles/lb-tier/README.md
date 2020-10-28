@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This role will create the openstack instaces
+This role will install haproxy and apply the required configuration
 
 Requirements
 ------------
@@ -11,7 +11,8 @@ N/A
 Role Variables
 --------------
 
-osp_servers: list of servers to be deployed
+  - payload: name of the haproxy package and service
+  - load_balancer_packages: Packages to install for haproxy
 
 Dependencies
 ------------
@@ -25,7 +26,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - osp-servers
+         - lb-tier
 
 License
 -------

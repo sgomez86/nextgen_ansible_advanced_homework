@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This role will create the openstack instaces
+This role will deploy Tomcat and copy the HTML file.
 
 Requirements
 ------------
@@ -11,7 +11,8 @@ N/A
 Role Variables
 --------------
 
-osp_servers: list of servers to be deployed
+    - payload: The name of the package to install as well as the name of the service
+
 
 Dependencies
 ------------
@@ -25,7 +26,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - osp-servers
+         - app-tier
 
 License
 -------

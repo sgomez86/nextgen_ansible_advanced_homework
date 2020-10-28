@@ -6,7 +6,7 @@
 
 - name: Enable tomcat start at boot
   service:
-    name: tomcat
+    name: "{{ payload }}"
     enabled: yes
 
 - name: Create MyApp folder
@@ -14,14 +14,14 @@
     path: /usr/share/tomcat/webapps/MyApp
     state: directory
     owner: root
-    group: tomcat
+    group: "{{ payload }}"
 
 - name: Copy html file into tomcat apps folder
   template:
     src: index.html.j2
     dest: /usr/share/tomcat/webapps/MyApp/index.html
     owner: root
-    group: tomcat
+    group: "{{ payload }}"
     mode: 0644
   
 - name: Copy server.xml to avoid typing /MyApp on url
@@ -29,5 +29,5 @@
     src: server.xml.j2
     dest: /etc/tomcat/server.xml
     owner: root
-    group: tomcat
+    group: "{{ payload }}"
   notify: start {{ payload }}  

@@ -1,7 +1,7 @@
 ---
 
-- name: start haproxy
+- name: start {{ payload }}
   service:
-    name: haproxy
+    name: "{{ payload }}"
     state: started
 
