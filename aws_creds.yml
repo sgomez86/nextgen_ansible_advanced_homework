@@ -22,7 +22,7 @@
     shell: printenv
   - name: "print vars"
     debug:
-      var: hostvar[inventory_hostname]
+      var: hostvars[inventory_hostname]
   - name: Tower Creds key file
     tower_credential:
       name: Creds for AWS instances
