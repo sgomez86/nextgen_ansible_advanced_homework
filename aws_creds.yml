@@ -19,7 +19,10 @@
     shell: (cd /root/.ssh; find . -maxdepth 1 -type f -iname '*key.pem')| cut -d'/' -f2
     register: file_to_copy
   - name: Cat pem file
-    shell: cat /root/.ssh/c9d8key.pem
+    shell: printenv
+  - name: "print vars"
+    debug:
+      var: hostvar[inventory_hostname]
   - name: Tower Creds key file
     tower_credential:
       name: Creds for AWS instances
